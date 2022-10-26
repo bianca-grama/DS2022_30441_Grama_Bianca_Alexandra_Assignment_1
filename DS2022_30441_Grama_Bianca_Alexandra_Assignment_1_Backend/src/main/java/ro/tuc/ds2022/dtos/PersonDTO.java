@@ -1,0 +1,65 @@
+package ro.tuc.ds2022.dtos;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.springframework.hateoas.RepresentationModel;
+
+import java.util.Objects;
+
+@Data
+@AllArgsConstructor
+public class PersonDTO extends RepresentationModel<PersonDTO> {
+
+    private Integer id;
+    private String name;
+    private Integer role;
+    private String username;
+    private String password;
+
+    public PersonDTO() {
+    }
+
+    public PersonDTO(Integer id, String name, Integer role) {
+        this.id = id;
+        this.name = name;
+        this.role = role;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonDTO personDTO = (PersonDTO) o;
+        return Objects.equals(role, personDTO.role) &&
+                Objects.equals(name, personDTO.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, role);
+    }
+}
