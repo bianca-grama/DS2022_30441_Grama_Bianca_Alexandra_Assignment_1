@@ -1,13 +1,9 @@
 package ro.tuc.ds2022.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.util.Objects;
 
-@Data
-@AllArgsConstructor
 public class PersonDTO extends RepresentationModel<PersonDTO> {
 
     private Integer id;
@@ -19,12 +15,13 @@ public class PersonDTO extends RepresentationModel<PersonDTO> {
     public PersonDTO() {
     }
 
-    public PersonDTO(Integer id, String name, Integer role) {
+    public PersonDTO(Integer id, String name, Integer role, String username, String password){
         this.id = id;
         this.name = name;
         this.role = role;
+        this.username = username;
+        this.password = password;
     }
-
     public Integer getId() {
         return id;
     }
@@ -47,6 +44,22 @@ public class PersonDTO extends RepresentationModel<PersonDTO> {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

@@ -1,0 +1,27 @@
+body, p {
+  font-family: Verdana, sans-serif;
+}
+
+.main {
+  background-image: url("src/assets/img2.jpg");
+  background-repeat: repeat-y;
+  background-size:cover;
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+.main-container{
+  margin-left:2em;
+}
+
+.buton{
+
+  display: block;
+  align-content: center;
+  position:absolute;
+  left:50%;
+  transform: translate(-50%, 0);
+}

@@ -6,6 +6,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ro.tuc.ds2022.dtos.DeviceDTO;
 import ro.tuc.ds2022.dtos.PersonDTO;
 import ro.tuc.ds2022.services.PersonService;
 
@@ -15,7 +16,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping(value = "/person")
 public class PersonController {
 
@@ -53,18 +54,18 @@ public class PersonController {
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<String> updatePerson(@RequestParam(name = "id") Integer id, @RequestBody PersonDTO personDTO) {
+    @PutMapping(value="/{id}")
+    public ResponseEntity<PersonDTO> updatePerson(@PathVariable("id") Integer id, @RequestBody PersonDTO personDTO) {
         PersonDTO updatedPerson = personService.updatePerson(id, personDTO);
         if (updatedPerson != null) {
-            return new ResponseEntity<>("Person updated successfully.", HttpStatus.OK);
+            return new ResponseEntity<>(updatedPerson, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Person update failed.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<String> deletePerson(@RequestParam(name = "id") Integer id) {
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity<String> deletePerson(@PathVariable("id") Integer id) {
         boolean success = personService.deletePersonById(id);
         if (success) {
             return new ResponseEntity<>("Delete successful", HttpStatus.OK);
@@ -77,7 +78,7 @@ public class PersonController {
     public ResponseEntity<PersonDTO> login(@RequestBody PersonDTO personDTO) {
         PersonDTO personLoggedIn = personService.login(personDTO);
         if (personLoggedIn != null) {
-            return new ResponseEntity<>(personDTO, HttpStatus.OK);
+            return new ResponseEntity<>(personLoggedIn, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
         }

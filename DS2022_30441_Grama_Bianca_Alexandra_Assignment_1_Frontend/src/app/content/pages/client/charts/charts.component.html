@@ -1,0 +1,33 @@
+<body>
+<div class="main">
+  <app-header-client></app-header-client>
+
+
+  <div class="main-container">
+    <br>
+    <div>
+      <p-calendar [(ngModel)]="date" name="date" dateFormat='dd/mm/yy'></p-calendar>
+      <br><br>
+      <button (click)="getValues()" class="buton" icon="pi pi-user" label="Generate charts" pButton pRipple type="submit"></button>
+
+    </div>
+    <div *ngFor="let device of devices">
+      <p> Device {{device.description}} </p>
+      <div class="chart">
+        <div class="content">
+          <div class="bars" *ngFor="let item of chartList[device.id]">
+            <span>{{item.value}}</span>
+            <div class="bar" [style.background-color]="item.color" [style.height]='item.size'></div>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="legends">
+          <span *ngFor="let item of chartList[device.id]">{{item.legend}}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>

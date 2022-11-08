@@ -15,7 +15,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping(value = "/device")
 public class DeviceController {
 
@@ -29,7 +29,7 @@ public class DeviceController {
     @PostMapping()
     public ResponseEntity<String> insertDevice(@RequestBody DeviceDTO deviceDTO) {
         Integer deviceId = deviceService.insert(deviceDTO);
-        if(deviceId != null){
+        if (deviceId != null) {
             return new ResponseEntity<>(String.format("Inserted device with ID %s.", deviceId), HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>("Invalid data provided", HttpStatus.BAD_REQUEST);
@@ -65,18 +65,18 @@ public class DeviceController {
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<String> updateDevice(@RequestParam(name = "id") Integer id, @RequestBody DeviceDTO deviceDTO) {
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<DeviceDTO> updateDevice(@PathVariable("id") Integer id, @RequestBody DeviceDTO deviceDTO) {
         DeviceDTO updatedDevice = deviceService.updateDevice(id, deviceDTO);
         if (updatedDevice != null) {
-            return new ResponseEntity<>("Device updated successfully.", HttpStatus.OK);
+            return new ResponseEntity<>(updatedDevice, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Device update failed.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<String> deleteDevice(@RequestParam(name = "id") Integer id) {
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteDevice(@PathVariable("id") Integer id) {
         boolean success = deviceService.deleteDeviceById(id);
         if (success) {
             return new ResponseEntity<>("Delete successful", HttpStatus.OK);

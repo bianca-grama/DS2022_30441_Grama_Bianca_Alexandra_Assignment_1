@@ -1,0 +1,11 @@
+<p-menubar [model]="items">
+  <div>
+    <button *ngIf="!loggedIn" label="Log in" onclick="window.open('http://localhost:4200/login', '_self')"
+            pButton style="margin-left:.25em" type="button"></button>
+    <button *ngIf="!loggedIn" label="Sign up" onclick="window.open('http://localhost:4200/signup', '_self')"
+            pButton style="margin-left:.25em" type="button"></button>
+    <button (click)="logout()" *ngIf="loggedIn" label="Log out"
+            pButton style="margin-left:.25em" type="button"></button>
+  </div>
+</p-menubar>
+
