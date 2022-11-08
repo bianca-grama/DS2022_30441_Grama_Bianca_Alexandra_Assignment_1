@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  app:
+    image: 'spring_back_end'
+    ports:
+      - "8080:8080"
+    build:
+      context: ./DS2022_30441_Grama_Bianca_Alexandra_Assignment_1_Backend
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
+      - SPRING_DATASOURCE_USERNAME=compose-postgres
+      - SPRING_DATASOURCE_PASSWORD=compose-postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  frontend:
+    image: frontend
+    ports:
+      - "4200:4200"
+    build:
+      context: ./DS2022_30441_Grama_Bianca_Alexandra_Assignment_1_Frontend
+    depends_on:
+      - app
+    container_name: frontend
+
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=compose-postgres
+      - POSTGRES_PASSWORD=compose-postgres
+      - POSTGRES_DB=compose-postgres

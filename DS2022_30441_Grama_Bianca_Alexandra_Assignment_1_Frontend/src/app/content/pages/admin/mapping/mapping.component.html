@@ -1,0 +1,20 @@
+<div class="main">
+  <app-header-admin></app-header-admin>
+  <div class="main-container">
+    <h3>Create a new ownership mapping between a user and a device</h3><br>
+    <div style="display:flex">
+      <div style="width:30em; margin:2em">
+        <p> User</p>
+        <p-listbox [options]="persons" [(ngModel)]="selectedPerson" optionLabel="name"></p-listbox>
+      </div>
+      <div style="width:30em; margin:2em">
+        <p> Device</p>
+        <p-listbox [options]="devices" [(ngModel)]="selectedDevice" optionLabel="description"></p-listbox>
+      </div>
+    </div>
+    <br>
+    <button (click)="mapDevices(selectedPerson, selectedDevice)" class="buton" label="Submit" pButton pRipple type="submit"></button>
+  </div>
+</div>
+
+

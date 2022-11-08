@@ -1,15 +1,10 @@
 package ro.tuc.ds2022.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Data
-@AllArgsConstructor
 public class Device implements Serializable {
 
     @Id
@@ -31,5 +26,53 @@ public class Device implements Serializable {
     private Person owner;
 
     public Device() {
+    }
+
+    public Device(Integer id, String description, String address, Integer maxConsumption, Person owner) {
+        this.id = id;
+        this.description = description;
+        this.address = address;
+        this.maxConsumption = maxConsumption;
+        this.owner = owner;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getMaxConsumption() {
+        return maxConsumption;
+    }
+
+    public void setMaxConsumption(Integer maxConsumption) {
+        this.maxConsumption = maxConsumption;
+    }
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 }

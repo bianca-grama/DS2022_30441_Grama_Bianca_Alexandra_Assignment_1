@@ -75,6 +75,7 @@ public class PersonService {
             throw new ResourceNotFoundException(Person.class.getSimpleName() + " with id: " + id);
         } else {
             if (personValidator.isValidForUpdate(personInDb.get(), personBuilder.toEntity(newPerson))){
+                personInDb.get().setUsername(newPerson.getUsername());
                 personInDb.get().setName(newPerson.getName());
                 personInDb.get().setRole(newPerson.getRole());
 
@@ -100,6 +101,16 @@ public class PersonService {
         if (personValidator.isValidLogin(person)) {
             Person personLoggedIn = personRepository.findByUsername(person.getUsername());
             return personBuilder.toDTO(personLoggedIn);
+        }
+        return null;
+    }
+
+    public Person getAdminUser(){
+        List<Person> personList = personRepository.findAll();
+        for(Person person : personList){
+            if(person.getRole() == 1){
+                return person;
+            }
         }
         return null;
     }

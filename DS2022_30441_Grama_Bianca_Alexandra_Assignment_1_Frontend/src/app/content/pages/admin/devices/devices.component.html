@@ -1,0 +1,83 @@
+<body>
+<div class="main">
+  <app-header-admin></app-header-admin>
+
+  <button (click)="createNewDevice()" label="Add new device" pButton style="margin-left:.25em; padding:.5em; margin:1em;"
+          type="button" icon="pi pi-user-plus"></button>
+
+  <div class="main-container">
+
+    <p-card *ngFor="let device of devices"
+            [style]="{'margin': '1em', 'text-align':'center'}"
+            header="{{device.description}}">
+      <p>Id: {{device.id}}</p>
+      <p>Address: {{device.address}}</p>
+      <p>Max consumption: {{device.maxConsumption}}</p>
+      <p>Owner: {{device.ownerId}}</p>
+
+      <button (click)="edit(device)" label="Edit device" pButton style="margin-left:.25em"
+              type="button" icon="pi pi-user-edit"></button>
+      <br>
+      <br>
+      <button (click)="delete(device)" label="Delete device" pButton style="margin-left:.25em"
+              type="button" icon="pi pi-user-minus"></button>
+    </p-card>
+  </div>
+
+
+  <div *ngIf="editing" class="edit-form">
+    <form (ngSubmit)="submitEdit()">
+      <label class="label-and-input" for="description1">Description</label>
+      <input [(ngModel)]="editedDevice.description" class="label-and-input" id="description1" name="description"
+             pInputText type="text" value="{{deviceToBeEdited.description}}" placeholder="{{deviceToBeEdited.description}}">
+      <br>
+
+      <label class="label-and-input" for="address1">Address</label>
+      <input [(ngModel)]="editedDevice.address" class="label-and-input" id="address1" name="address"
+             pInputText type="text" value="{{deviceToBeEdited.address}}" placeholder="{{deviceToBeEdited.address}}">
+      <br>
+
+      <label class="label-and-input" for="maxConsumption1">Max consumption</label>
+      <input [(ngModel)]="editedDevice.maxConsumption" class="label-and-input" id="maxConsumption1" name="name"
+             pInputText type="text" value="{{deviceToBeEdited.maxConsumption}}" placeholder="{{deviceToBeEdited.maxConsumption}}">
+      <br>
+
+      <label class="label-and-input" for="ownerId1">Owner ID</label>
+      <input [(ngModel)]="editedDevice.ownerId" class="label-and-input" id="ownerId1" name="ownerId"
+             pInputText type="text" value="{{deviceToBeEdited.ownerId}}" placeholder="{{deviceToBeEdited.ownerId}}">
+      <br>
+
+      <button class="buton" icon="pi pi-user" label="Submit edited device" pButton pRipple type="submit"></button>
+    </form>
+    <br>
+  </div>
+
+  <div *ngIf="creating" class="edit-form">
+    <form (ngSubmit)="submitCreate()">
+      <label class="label-and-input" for="description2">Description</label>
+      <input [(ngModel)]="createdDevice.description" class="label-and-input" id="description2" name="description-create"
+             pInputText type="text" value="{{createdDevice.description}}" placeholder="">
+      <br>
+
+      <label class="label-and-input" for="address2">Address</label>
+      <input [(ngModel)]="createdDevice.address" class="label-and-input" id="address2" name="address-create"
+             pInputText type="text" value="{{createdDevice.address}}" placeholder="">
+      <br>
+
+      <label class="label-and-input" for="maxConsumption2">Max consumption</label>
+      <input [(ngModel)]="createdDevice.maxConsumption" class="label-and-input" id="maxConsumption2" name="maxConsumption-create"
+             pInputText type="text" value="{{createdDevice.maxConsumption}}" placeholder="">
+      <br>
+
+      <label class="label-and-input" for="ownerId2">Owner ID</label>
+      <input [(ngModel)]="createdDevice.ownerId" class="label-and-input" id="ownerId2" name="ownerId-create"
+             pInputText type="text" value="{{createdDevice.ownerId}}" placeholder="{{createdDevice.ownerId}}">
+      <br>
+      <button class="buton" icon="pi pi-user" label="Submit new device" pButton pRipple type="submit"></button>
+    </form>
+    <br>
+  </div>
+
+</div>
+
+</body>

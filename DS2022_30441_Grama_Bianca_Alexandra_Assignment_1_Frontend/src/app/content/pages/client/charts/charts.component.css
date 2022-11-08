@@ -1,0 +1,84 @@
+body, p {
+  font-family: Verdana, sans-serif;
+  width:100%;
+}
+
+.main {
+  background-image: url("src/assets/img2.jpg");
+  background-repeat: repeat-y;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display:block;
+  width:100%;
+}
+
+.main-container{
+  display: block;
+  margin-left:3em;
+}
+
+.edit-form{
+  display: block;
+  align-content: center;
+  position:absolute;
+  left:50%;
+  transform: translate(-50%, 0);
+}
+
+.chart .content{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height:160px;
+}
+
+.chart .content span{
+  font-size: 13px;
+  color: #707070;
+}
+
+.chart .line{
+  background-color: #CCCCCC;
+  width: 100%;
+  height: 1px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.chart .legends{
+  display: flex;
+  flex-direction: row;
+  color: #707070;
+  font-size: 12px;
+  text-align: center;
+}
+
+.chart .legends span{
+  width: 60px;
+  margin:0 15px;
+}
+
+.chart .bars{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.chart .bar{
+  width: 60px;
+  min-height: 2px;
+  margin:0 15px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.chart .bar:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.20);
+}

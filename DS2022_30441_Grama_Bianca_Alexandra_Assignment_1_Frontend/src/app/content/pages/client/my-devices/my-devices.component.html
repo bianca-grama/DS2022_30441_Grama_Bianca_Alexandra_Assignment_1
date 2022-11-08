@@ -1,0 +1,17 @@
+<body>
+<div class="main">
+  <app-header-client></app-header-client>
+
+  <div class="main-container">
+
+    <p-card *ngFor="let device of devices"
+            [style]="{'margin': '1em', 'text-align':'center'}"
+            header="{{device.description}}">
+      <p>Id: {{device.id}}</p>
+      <p>Address: {{device.address}}</p>
+      <p>Max consumption: {{device.maxConsumption}}</p>
+    </p-card>
+  </div>
+</div>
+
+</body>

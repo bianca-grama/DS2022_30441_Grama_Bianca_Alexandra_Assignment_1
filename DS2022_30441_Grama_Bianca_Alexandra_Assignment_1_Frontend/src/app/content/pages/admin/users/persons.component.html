@@ -1,0 +1,77 @@
+<div class="main">
+  <app-header-admin></app-header-admin>
+
+  <button (click)="createNewPerson()" label="Add new user" pButton style="margin-left:.25em; padding:.5em; margin:1em;"
+          type="button" icon="pi pi-user-plus"></button>
+
+  <div class="main-container">
+
+    <p-card *ngFor="let person of persons"
+            [style]="{'width': '13rem', 'margin': '1em', 'height':'13 rem', 'text-align':'center'}"
+            header="{{person.username}}">
+      <p>Id: {{person.id}} </p>
+      <p>Name: {{person.name}}</p>
+      <p>Role: {{person.role}}</p>
+
+      <button (click)="edit(person)" label="Edit user" pButton style="margin-left:.25em"
+              type="button" icon="pi pi-user-edit"></button>
+      <br>
+      <br>
+      <button (click)="delete(person)" label="Delete user" pButton style="margin-left:.25em"
+              type="button" icon="pi pi-user-minus"></button>
+    </p-card>
+  </div>
+
+
+  <div *ngIf="editing" class="edit-form">
+    <form (ngSubmit)="submitEdit()">
+      <label class="label-and-input" for="name1">Name</label>
+      <input [(ngModel)]="editedPerson.name" class="label-and-input" id="name1" name="name"
+             pInputText type="text" value="{{personToBeEdited.name}}" placeholder="{{personToBeEdited.name}}">
+      <br>
+
+      <label class="label-and-input" for="username1">Username</label>
+      <input [(ngModel)]="editedPerson.username" class="label-and-input" id="username1" name="name"
+             pInputText type="text" value="{{personToBeEdited.username}}" placeholder="{{personToBeEdited.username}}">
+      <br>
+
+      <label class="label-and-input" for="role1">Role</label>
+      <input [(ngModel)]="editedPerson.role" class="label-and-input" id="role1" name="name"
+             pInputText type="text" value="{{personToBeEdited.role}}" placeholder="{{personToBeEdited.role}}">
+      <br>
+
+      <button class="buton" icon="pi pi-user" label="Submit edited person" pButton pRipple type="submit"></button>
+    </form>
+    <br>
+  </div>
+
+  <div *ngIf="creating" class="edit-form">
+    <form (ngSubmit)="submitCreate()">
+      <label class="label-and-input" for="name2">Name</label>
+      <input [(ngModel)]="createdPerson.name" class="label-and-input" id="name2" name="name-create"
+             pInputText type="text" value="{{createdPerson.name}}" placeholder="">
+      <br>
+
+      <label class="label-and-input" for="username2">Username</label>
+      <input [(ngModel)]="createdPerson.username" class="label-and-input" id="username2" name="username-create"
+             pInputText type="text" value="{{createdPerson.username}}" placeholder="">
+      <br>
+
+      <label class="label-and-input" for="password2">Password</label>
+      <input [(ngModel)]="createdPerson.password" class="label-and-input" id="password2" name="password-create"
+             pInputText type="password" value="{{createdPerson.password}}" placeholder="">
+      <br>
+
+      <label class="label-and-input" for="role2">Role</label>
+      <input [(ngModel)]="createdPerson.role" class="label-and-input" id="role2" name="role-create"
+             pInputText type="text" value="{{createdPerson.role}}" placeholder="">
+      <br>
+
+      <button class="buton" icon="pi pi-user" label="Submit new user" pButton pRipple type="submit"></button>
+    </form>
+    <br>
+  </div>
+
+</div>
+
+
